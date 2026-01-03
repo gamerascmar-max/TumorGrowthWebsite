@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    direction: rtl;
-    text-align: right;
+    direction: ltr; /* left-to-right for English */
+    text-align: left;
     padding: 20px;
     background: linear-gradient(to right, #e0f7fa, #ffffff);
 }
