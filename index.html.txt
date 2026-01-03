@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>حاسب نمو الورم اللوجستي</title>
+    <title>Logistic Tumor Growth Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>حاسب نمو الورم اللوجستي</h1>
+    <h1>Logistic Tumor Growth Calculator</h1>
 
-    <label>حجم الورم الابتدائي V₀ (سم³): </label>
+    <label>Initial Tumor Volume V₀ (cm³): </label>
     <input type="number" id="V0" value="1" step="0.1"><br><br>
 
-    <label>معدل النمو k (يوم⁻¹): </label>
+    <label>Growth Rate k (day⁻¹): </label>
     <input type="number" id="k" value="0.2" step="0.01"><br><br>
 
-    <label>الحجم الأقصى M (سم³): </label>
+    <label>Maximum Volume M (cm³): </label>
     <input type="number" id="M" value="10" step="0.1"><br><br>
 
-    <label>الزمن t (يوم): </label>
+    <label>Time t (days): </label>
     <input type="number" id="t" value="10" step="0.1"><br><br>
 
-    <label>الوصول لحجم معين Target V (سم³): </label>
+    <label>Target Volume (cm³): </label>
     <input type="number" id="targetV" value="5" step="0.1"><br><br>
 
-    <button onclick="calculate()">احسب</button>
+    <button onclick="calculate()">Calculate</button>
 
-    <h2>النتائج:</h2>
+    <h2>Results:</h2>
     <p id="result"></p>
 
-    <h2>المنحنى البياني لنمو الورم:</h2>
+    <h2>Tumor Growth Chart:</h2>
     <canvas id="tumorChart" width="600" height="400"></canvas>
 
-    <!-- مكتبة Chart.js -->
+    <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
