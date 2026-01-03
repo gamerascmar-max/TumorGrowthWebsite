@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    text-align: right;
+    padding: 20px;
+    background: linear-gradient(to right, #e0f7fa, #ffffff);
+}
+
+input {
+    width: 80px;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+canvas {
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    background-color: #fff;
+}

@@ -1,0 +1,69 @@
+let chart; // متغير عالمي للرسم
+
+function logisticGrowth(V0, k, M, t) {
+    let V = M / (1 + ((M - V0)/V0) * Math.exp(-k*t));
+    let dVdt = k * V * (1 - V/M);
+    return { V, dVdt };
+}
+
+function timeToReach(V0, k, M, targetV) {
+    if (targetV >= M) return Infinity;
+    return -Math.log((M/targetV - 1)/(M/V0 - 1)) / k;
+}
+
+function drawChart(V0, k, M) {
+    let labels = [];
+    let data = [];
+    for (let t = 0; t <= 30; t++) {
+        labels.push(t);
+        let V = M / (1 + ((M - V0)/V0) * Math.exp(-k*t));
+        data.push(V.toFixed(2));
+    }
+
+    const ctx = document.getElementById('tumorChart').getContext('2d');
+    
+    if (chart) chart.destroy(); // لو فيه رسم سابق، نحذفه
+    
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'حجم الورم (سم³)',
+                data: data,
+                borderColor: 'red',
+                backgroundColor: 'rgba(255,0,0,0.2)',
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true },
+                title: { display: true, text: 'منحنى نمو الورم اللوجستي' }
+            },
+            scales: {
+                x: { title: { display: true, text: 'الزمن (أيام)' } },
+                y: { title: { display: true, text: 'حجم الورم (سم³)' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    let V0 = parseFloat(document.getElementById('V0').value);
+    let k = parseFloat(document.getElementById('k').value);
+    let M = parseFloat(document.getElementById('M').value);
+    let t = parseFloat(document.getElementById('t').value);
+    let targetV = parseFloat(document.getElementById('targetV').value);
+
+    let result = logisticGrowth(V0, k, M, t);
+    let t_target = timeToReach(V0, k, M, targetV);
+
+    document.getElementById('result').innerHTML =
+        `V(t) = ${result.V.toFixed(2)} سم³<br>` +
+        `dV/dt = ${result.dVdt.toFixed(3)} سم³/يوم<br>` +
+        `الوقت للوصول إلى ${targetV} سم³ = ${t_target.toFixed(2)} يوم`;
+
+    drawChart(V0, k, M);
+}
